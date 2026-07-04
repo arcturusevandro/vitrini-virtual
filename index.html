@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evandro Bueno · Apresentadores digitais e Reels com IA</title>
+<style>
+  :root {
+    --ink: #0a0a0f;
+    --ink-soft: #14141c;
+    --card: #1a1a24;
+    --line: #2a2a38;
+    --text: #e8e6ef;
+    --muted: #9b98ab;
+    --accent: #ff5a3c;
+    --accent-2: #00e0b8;
+    --glow: rgba(255,90,60,0.25);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+  /* ambient glow */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -20%; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* HERO */
+  header { padding: 80px 0 60px; text-align: center; }
+  .eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--accent-2); margin-bottom: 24px; font-weight: 600;
+  }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(38px, 7vw, 76px);
+    font-weight: 700; line-height: 1.02; letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  h1 .accent { color: var(--accent); }
+  .sub {
+    font-size: clamp(16px, 2.2vw, 20px); color: var(--muted);
+    max-width: 600px; margin: 0 auto 40px; line-height: 1.6;
+  }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 30px; border-radius: 100px;
+    font-weight: 600; font-size: 16px; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    box-shadow: 0 8px 30px var(--glow);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px var(--glow); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--accent-2); color: var(--accent-2); }
+
+  /* differentiator strip */
+  .strip {
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+    padding: 36px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    margin: 60px 0 0;
+  }
+  .strip-item { text-align: center; max-width: 260px; }
+  .strip-item .ic { font-size: 24px; margin-bottom: 10px; }
+  .strip-item h3 { font-family: 'Space Grotesk'; font-size: 17px; margin-bottom: 6px; }
+  .strip-item p { font-size: 14px; color: var(--muted); }
+
+  /* SERVICES */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+  .svc {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 26px 24px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .svc:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .svc-main { border-color: rgba(255,90,60,0.4); background: linear-gradient(160deg, rgba(255,90,60,0.08), var(--card)); }
+  .svc-ia { border-color: rgba(0,224,184,0.35); background: linear-gradient(160deg, rgba(0,224,184,0.07), var(--card)); }
+  .svc-label {
+    font-family: 'Space Grotesk'; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px;
+  }
+  .svc-main .svc-label { color: var(--accent); }
+  .svc-ia .svc-label { color: var(--accent-2); }
+  .svc h3 { font-family: 'Space Grotesk'; font-size: 21px; margin-bottom: 10px; }
+  .svc p { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+  /* PORTFOLIO */
+  .section-head { margin: 80px 0 36px; }
+  .section-head .eyebrow { text-align: left; margin-bottom: 14px; }
+  .section-head h2 {
+    font-family: 'Space Grotesk'; font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700; letter-spacing: -0.01em;
+  }
+  .section-head p { color: var(--muted); margin-top: 10px; max-width: 540px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 18px; overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .video-frame {
+    position: relative; width: 100%; aspect-ratio: 9/16;
+    background: #000;
+  }
+  .video-frame iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+  }
+  .card-body { padding: 16px 18px 20px; }
+  .tag {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px; margin-bottom: 10px;
+  }
+  .tag-ia { background: rgba(0,224,184,0.12); color: var(--accent-2); }
+  .tag-real { background: rgba(255,90,60,0.12); color: var(--accent); }
+  .card-body h3 { font-family: 'Space Grotesk'; font-size: 17px; margin-bottom: 4px; }
+  .card-body p { font-size: 13px; color: var(--muted); }
+
+  /* CLOSING CTA */
+  .closing {
+    text-align: center; padding: 90px 0 60px; margin-top: 40px;
+  }
+  .closing h2 {
+    font-family: 'Space Grotesk'; font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700; margin-bottom: 18px; letter-spacing: -0.01em;
+  }
+  .closing p { color: var(--muted); max-width: 480px; margin: 0 auto 34px; font-size: 17px; }
+
+  footer {
+    border-top: 1px solid var(--line); padding: 30px 0;
+    text-align: center; color: var(--muted); font-size: 13px;
+  }
+  footer a { color: var(--accent-2); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    header { padding: 56px 0 40px; }
+    .strip { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Edição de Reels &amp; apresentadores digitais com IA</div>
+    <h1>Você grava.<br>Eu <span class="accent">edito.</span> Você posta.</h1>
+    <p class="sub">Me envie seu material e eu devolvo o Reels pronto para postar. E se você não tem com quem gravar, crio um apresentador digital com IA do zero. Duas formas de resolver o seu vídeo.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://wa.me/5566981114935?text=Ol%C3%A1%20Evandro!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20or%C3%A7amento." target="_blank">Falar no WhatsApp →</a>
+      <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+    </div>
+  </header>
+
+  <section id="servicos">
+    <div class="section-head" style="text-align:center;">
+      <div class="eyebrow" style="text-align:center;">Como posso te ajudar</div>
+      <h2 style="text-align:center;">Você escolhe o caminho</h2>
+    </div>
+    <div class="services">
+      <div class="svc svc-main">
+        <div class="svc-label">Tem o material</div>
+        <h3>Edição de Reels</h3>
+        <p>Me envie sua gravação e eu devolvo o Reels editado: cortes, ritmo, legendas e finalização vertical pronta para o Instagram, TikTok e Shorts.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-label">Vídeo longo</div>
+        <h3>Cortes para Reels</h3>
+        <p>Tem uma live, podcast, aula ou palestra? Seleciono os melhores momentos e transformo em vários Reels prontos para postar.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-label">Produto / sistema</div>
+        <h3>Vídeo de demonstração</h3>
+        <p>Apresentação de software, produto ou serviço. Gravo a tela, busco imagens de apoio e monto em ritmo de Reels com texto.</p>
+      </div>
+      <div class="svc svc-ia">
+        <div class="svc-label">Não tem com quem gravar</div>
+        <h3>Apresentador digital com IA</h3>
+        <p>Crio um apresentador realista do zero, ou a versão digital de uma pessoa real. Vídeo com cara e voz, sem câmera nem estúdio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="section-head">
+      <div class="eyebrow">Portfólio</div>
+      <h2>Trabalhos entregues</h2>
+      <p>Apresentadores digitais para instituições e marcas. Toque para assistir.</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/jEec5MsmRHc" title="Natura" allowfullscreen loading="lazy"></iframe></div>
+        <div class="card-body">
+          <span class="tag tag-real">Versão digital · pessoa real</span>
+          <h3>Consultora Natura</h3>
+          <p>Reels para representante de loja virtual.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/tETfFhxvtZ4" title="Altamira" allowfullscreen loading="lazy"></iframe></div>
+        <div class="card-body">
+          <span class="tag tag-ia">Apresentadora em IA</span>
+          <h3>Altamira · PA</h3>
+          <p>Apresentadora oficial do polo, criada por IA.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/FFBFQX1K3R0" title="Ananindeua" allowfullscreen loading="lazy"></iframe></div>
+        <div class="card-body">
+          <span class="tag tag-ia">Apresentadora em IA</span>
+          <h3>Ananindeua · PA</h3>
+          <p>Divulgação institucional com abertura aérea.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/O-f9QStUK5M" title="Alto Alegre" allowfullscreen loading="lazy"></iframe></div>
+        <div class="card-body">
+          <span class="tag tag-real">Versão digital · pessoa real</span>
+          <h3>Alto Alegre · RR</h3>
+          <p>Pessoa real transformada em versão digital.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/V7CXHCDfF6Q" title="Cariacica AJES" allowfullscreen loading="lazy"></iframe></div>
+        <div class="card-body">
+          <span class="tag tag-ia">Apresentadora em IA</span>
+          <h3>Cariacica · ES</h3>
+          <p>Apresentadora institucional criada por IA.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/CuILt8wa8z8" title="UniÚnica Cariacica" allowfullscreen loading="lazy"></iframe></div>
+        <div class="card-body">
+          <span class="tag tag-ia">Apresentadora em IA</span>
+          <h3>UniÚnica · Cariacica ES</h3>
+          <p>Mesma apresentadora oficial do polo.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/LwT4_QPkxVg" title="Mariana IA" allowfullscreen loading="lazy"></iframe></div>
+        <div class="card-body">
+          <span class="tag tag-ia">Apresentadora em IA</span>
+          <h3>Mariana · IA</h3>
+          <p>Call to action com apresentadora digital — força da inteligência artificial.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/heStEHYWMiQ" title="Mariana IA" allowfullscreen loading="lazy"></iframe></div>
+        <div class="card-body">
+          <span class="tag tag-ia">Apresentadora em IA</span>
+          <h3>Mariana · IA</h3>
+          <p>Call to action com apresentadora digital — força da inteligência artificial.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="closing">
+    <h2>Pronto para ter seu apresentador digital?</h2>
+    <p>Me conta sua ideia e eu retorno com a melhor forma de produzir. Orçamento direto, sem complicação.</p>
+    <a class="btn btn-primary" href="https://wa.me/5566981114935?text=Ol%C3%A1%20Evandro!%20Quero%20um%20or%C3%A7amento%20de%20Reels%20com%20IA." target="_blank">Solicitar orçamento no WhatsApp →</a>
+  </section>
+
+  <footer>
+    Evandro Bueno · Reels e apresentadores digitais com IA · Atendimento online para todo o Brasil<br>
+    <a href="https://www.instagram.com/evandrobuenosouza" target="_blank">@evandrobuenosouza</a>
+  </footer>
+
+</div>
+</body>
+</html>
