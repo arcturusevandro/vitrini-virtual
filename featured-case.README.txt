@@ -1,0 +1,3 @@
+Integration target: index.html before </body>
+<script src="featured-case.js" defer></script>
+The script injects the featured educational campaigns case immediately before the existing projects grid and loads featured-case.css.
