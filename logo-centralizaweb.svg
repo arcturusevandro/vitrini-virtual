@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 300" role="img" aria-labelledby="title desc">
 <title id="title">CentralizaWeb</title>
 <desc id="desc">CentralizaWeb — Soluções digitais para o seu crescimento</desc>
 <defs><linearGradient id="web" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#08bce8"/><stop offset="1" stop-color="#0874f9"/></linearGradient></defs>
-<rect width="1200" height="300" fill="#fff"/>
+<rect width="1360" height="300" fill="#fff"/>
 <text x="38" y="190" font-family="Arial, Helvetica, sans-serif" font-size="172" font-weight="800" letter-spacing="-8" fill="#111a28">Centraliza</text>
-<text x="895" y="190" font-family="Arial, Helvetica, sans-serif" font-size="172" font-weight="800" letter-spacing="-8" fill="url(#web)">Web</text>
+<text x="935" y="190" font-family="Arial, Helvetica, sans-serif" font-size="172" font-weight="800" letter-spacing="-8" fill="url(#web)">Web</text>
 <text x="54" y="252" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="12" fill="#344054">SOLUÇÕES DIGITAIS PARA O SEU CRESCIMENTO</text>
 </svg>
